@@ -4,6 +4,7 @@
 #define PHP_BENCHMARK_EXTNAME "benchmark"
 
 PHP_FUNCTION(bm);
+PHP_FUNCTION(bm_cmp);
 PHP_FUNCTION(bm_write);
 PHP_FUNCTION(bm_writeln);
 

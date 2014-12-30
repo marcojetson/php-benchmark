@@ -55,3 +55,10 @@ bm_write(function () use ($nombres) {
 bm_writeln(function () use ($nombres) {
     in_array_l('omar', $nombres);
 });
+
+$cmp = bm_cmp(
+    function () use ($nombres) { in_array_l('omar', $nombres); },
+    function () use ($nombres) { in_array_b('omar', $nombres); }
+);
+
+var_dump($cmp);

@@ -9,6 +9,7 @@
 
 static zend_function_entry benchmark_functions[] = {
     PHP_FE(bm, NULL)
+    PHP_FE(bm_cmp, NULL)
     PHP_FE(bm_write, NULL)
     PHP_FE(bm_writeln, NULL)
     PHP_FE_END
@@ -58,6 +59,28 @@ PHP_FUNCTION(bm)
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == SUCCESS) {
         RETURN_DOUBLE(run_bm(callable, n));
+    }
+}
+
+PHP_FUNCTION(bm_cmp)
+{
+    float bm1, bm2;
+    int n = DEFAULT_N, ret;
+    zval *callable1, *callable2;
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "zz|l", &callable1, &callable2, &n) == SUCCESS) {
+        bm1 = run_bm(callable1, n);
+        bm2 = run_bm(callable2, n);
+
+        if (bm1 > bm2) {
+            ret = 1;
+        } else if (bm1 < bm2) {
+            ret = -1;
+        } else {
+            ret = 0;
+        }
+
+        RETURN_LONG(ret);
     }
 }
 
