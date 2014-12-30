@@ -56,11 +56,9 @@ PHP_FUNCTION(bm)
     int n = DEFAULT_N;
     zval *callable;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == FAILURE) {
-        RETURN_NULL();
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == SUCCESS) {
+        RETURN_DOUBLE(run_bm(callable, n));
     }
-
-    RETURN_DOUBLE(run_bm(callable, n));
 }
 
 PHP_FUNCTION(bm_write)
@@ -68,11 +66,9 @@ PHP_FUNCTION(bm_write)
     int n = DEFAULT_N;
     zval *callable;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == FAILURE) {
-        RETURN_NULL();
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == SUCCESS) {
+        php_printf("bm took %f seconds", run_bm(callable, n));
     }
-
-    php_printf("bm took %f seconds", run_bm(callable, n));
 }
 
 PHP_FUNCTION(bm_writeln)
@@ -80,9 +76,7 @@ PHP_FUNCTION(bm_writeln)
     int n = DEFAULT_N;
     zval *callable;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == FAILURE) {
-        RETURN_NULL();
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == SUCCESS) {
+        php_printf("bm took %f seconds\n", run_bm(callable, n));
     }
-
-    php_printf("bm took %f seconds\n", run_bm(callable, n));
 }
