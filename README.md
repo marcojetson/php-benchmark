@@ -13,6 +13,6 @@ Runs $callable $n times and outputs elapsed time appending a new line
 
 ## Build
 
-phpize
-./configure --enable-benchmark
-make
+    phpize
+    ./configure --enable-benchmark
+    make
