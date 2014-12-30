@@ -32,3 +32,4 @@ modules
 sm.php
 run-tests.php
 autom4te.cache
+build.sh

@@ -84,24 +84,3 @@ PHP_FUNCTION(bm_writeln)
 
     php_printf("Benchmark took %f seconds\n", run_bm(callable, n));
 }
-
-/*PHP_FUNCTION(benchmark)
-{
-    float start, end;
-    int n = 100000;
-    zval *callable, return_ptr;
-
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == FAILURE) {
-        RETURN_NULL();
-    }
-
-    start = (float) clock() / CLOCKS_PER_SEC;
-
-    for (int i = 0; i < n; i++) {
-        call_user_function(CG(function_table), NULL, callable, &return_ptr, 0, NULL TSRMLS_CC);
-    }
-    
-    end = (float) clock() / CLOCKS_PER_SEC;
-
-    RETURN_DOUBLE(end - start);
-}*/
