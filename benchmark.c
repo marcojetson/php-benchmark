@@ -5,6 +5,8 @@
 #include "php_benchmark.h"
 #include <time.h>
 
+#define DEFAULT_N 100000
+
 static zend_function_entry benchmark_functions[] = {
     PHP_FE(bm, NULL)
     PHP_FE(bm_write, NULL)
@@ -51,7 +53,7 @@ float run_bm(zval *callable, int n)
 
 PHP_FUNCTION(bm)
 {
-    int n = 100000;
+    int n = DEFAULT_N;
     zval *callable;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == FAILURE) {
@@ -63,24 +65,24 @@ PHP_FUNCTION(bm)
 
 PHP_FUNCTION(bm_write)
 {
-    int n = 100000;
+    int n = DEFAULT_N;
     zval *callable;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == FAILURE) {
         RETURN_NULL();
     }
 
-    php_printf("Benchmark took %f seconds", run_bm(callable, n));
+    php_printf("bm took %f seconds", run_bm(callable, n));
 }
 
 PHP_FUNCTION(bm_writeln)
 {
-    int n = 100000;
+    int n = DEFAULT_N;
     zval *callable;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l", &callable, &n) == FAILURE) {
         RETURN_NULL();
     }
 
-    php_printf("Benchmark took %f seconds\n", run_bm(callable, n));
+    php_printf("bm took %f seconds\n", run_bm(callable, n));
 }

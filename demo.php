@@ -50,7 +50,7 @@ $bm2 = bm(function () use ($nombres) {
 
 bm_write(function () use ($nombres) {
     in_array_l('omar', $nombres);
-});
+}, $n = 1000);
 
 bm_writeln(function () use ($nombres) {
     in_array_l('omar', $nombres);
